@@ -52,6 +52,15 @@ subprojects { project ->
   }
 
   pdfThemes {
+    github 'corporate', { 
+      organisation = 'fwilhe2' 
+      repository = 'corporate-theme' 
+      relativePath = 'resources/themes' 
+
+      branch = 'master' 
+      tag = '1.0.1' 
+      commit = '4910271e8c3964b60e186a62f3e4339ed0752714' 
+    }
     local 'pdf', { 
       themeDir = new File(rootProject.projectDir, 'themes')
       themeName = 'pdf' 

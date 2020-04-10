@@ -12,7 +12,7 @@ asciidoctor {
 }
 
 asciidoctorPdf {
-  theme 'pdf'
+  theme 'corporate'
 }
 
 asciidoctorj {
