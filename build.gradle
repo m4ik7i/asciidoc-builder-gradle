@@ -60,6 +60,10 @@ subprojects { project ->
       themeDir = new File(rootProject.projectDir, 'themes')
       themeName = 'pdf-ja' 
     }
+    local 'pdf-simple', { 
+      themeDir = new File(rootProject.projectDir, 'themes')
+      themeName = 'pdf-simple' 
+    }
   }
 
   asciidoctorPdf {
@@ -71,7 +75,7 @@ subprojects { project ->
 
     fontsDir new File(rootProject.projectDir, 'fonts')
 
-    theme 'pdf'
+    theme 'pdf-simple'
 
     asciidoctorj {
       // requires 'asciidoctor-pdf-linewrap-ja'
