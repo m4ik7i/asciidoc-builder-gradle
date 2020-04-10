@@ -1,20 +1,37 @@
 plugins {
   id 'org.asciidoctor.jvm.convert' version '3.1.0'
+  id 'org.asciidoctor.jvm.pdf' version '3.1.0'
+  id 'org.asciidoctor.jvm.gems' version '3.1.0'
 }
 
 version = '0.1.0'
 
+repositories {
+  jcenter()
+  mavenCentral()
+  ruby.gems()
+}
+
+dependencies {
+  asciidoctorGems 'rubygems:asciidoctor-pdf:1.5.3'
+  // asciidoctorGems 'rubygems:asciidoctor-pdf:1.5.0.alpha.18'
+  // asciidoctorGems 'rubygems:asciidoctor-pdf-linewrap-ja:0.6.0'
+}
+
 subprojects { project ->
   apply plugin: 'java'
   apply plugin: 'org.asciidoctor.jvm.convert'
+  apply plugin: 'org.asciidoctor.jvm.pdf'
+  apply plugin: 'org.asciidoctor.jvm.gems'
 
   repositories {
     jcenter()
     mavenCentral()
+    ruby.gems()
   }
 
   dependencies {}
-
+  
   asciidoctor {
     baseDir file('src/docs/asciidoc')
     sourceDir file('src/docs/asciidoc')
@@ -34,12 +51,46 @@ subprojects { project ->
     // }
   }
 
+  pdfThemes {
+    local 'pdf', { 
+      themeDir = new File(rootProject.projectDir, 'themes')
+      themeName = 'pdf' 
+    }
+    local 'pdf-ja', { 
+      themeDir = new File(rootProject.projectDir, 'themes')
+      themeName = 'pdf-ja' 
+    }
+  }
+
+  asciidoctorPdf {
+    dependsOn ':asciidoctorGemsPrepare'
+
+    baseDir file('src/docs/asciidoc')
+    sourceDir file('src/docs/asciidoc')
+    outputDir new File(rootProject.buildDir, project.name + '/pdf')
+
+    fontsDir new File(rootProject.projectDir, 'fonts')
+
+    theme 'pdf'
+
+    asciidoctorj {
+      // requires 'asciidoctor-pdf-linewrap-ja'
+      attributes(
+        'scripts': 'cjk',
+      )
+    }
+  }
+
   asciidoctorj {
     version = '2.2.0'
+
+    // gemPaths new File(rootProject.projectDir, 'gems')
 
     modules {
       diagram.use()
       diagram.version '1.5.16'
+      pdf.version '1.5.3'
+      // pdf.version '1.5.0-alpha.18'
     }
 
     requires = [
@@ -62,7 +113,7 @@ subprojects { project ->
       idseparator: '-',
       docinfo: 'shared',
 
-      // // 日本語設定
+      // 日本語設定
       // lang: 'ja',
       // 'toc-title': '目次',
       // 'chapter-label': '',
@@ -72,7 +123,7 @@ subprojects { project ->
       // 'appendix-caption': '付録',
       // 'listing-caption': 'リスト',
 
-      // stylesdir: 'style',
+      // stylesdir: new File(rootProject.projectDir, 'styles'),
       // stylesheet: 'style.css',
     )
   }

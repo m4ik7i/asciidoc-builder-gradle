@@ -2,7 +2,7 @@ version = '0.1.0'
 
 asciidoctor {
   sources {
-    include 'sample.adoc'
+    include 'sample.adoc', '日本語サンプル.adoc'
   }
   resources {
     from(sourceDir) {

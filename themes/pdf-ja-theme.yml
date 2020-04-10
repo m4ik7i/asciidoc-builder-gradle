@@ -1,0 +1,51 @@
+extends: default
+font:
+  catalog:
+    GenShinGothic-P:
+      normal: genshin/GenShinGothic-P-Normal.ttf
+      italic: genshin/GenShinGothic-P-Regular.ttf
+      bold: genshin/GenShinGothic-P-Medium.ttf
+      bold_italic: genshin/GenShinGothic-P-Bold.ttf
+    Genyo:
+      normal: genyo-font/JP/GenYoMinJP-Regular.ttf
+      italic: genyo-font/JP/GenYoMinJP-Light.ttf
+      bold: genyo-font/JP/GenYoMinJP-Bold.ttf
+      bold_italic: genyo-font/JP/GenYoMinJP-SemiBold.ttf
+    RictyDiminished:
+      normal: RictyDiminished/RictyDiminished-Regular.ttf
+      italic: RictyDiminished/RictyDiminished-Oblique.ttf
+      bold: RictyDiminished/RictyDiminished-Bold.ttf
+      bold_italic: RictyDiminished/RictyDiminished-BoldOblique.ttf
+base:
+  font_family: Genyo
+button:
+  font_family: GenShinGothic-P
+literal:
+  font-family: RictyDiminished
+heading:
+  font_family: GenShinGothic-P
+title_page:
+  title:
+    font_family: GenShinGothic-P
+  subtitle:
+    font_family: GenShinGothic-P
+  authors:
+    font_family: GenShinGothic-P
+  revision:
+    font_family: GenShinGothic-P
+caption:
+  font_family: GenShinGothic-P
+lead:
+  font_family: GenShinGothic-P
+abstract:
+  title:
+    font_family: $heading_font_family
+code:
+  font_family: RictyDiminished
+conum:
+  font_family: RictyDiminished
+sidebar:
+  title:
+    font_family: $heading_font_family
+table:
+  font_family: $heading_font_family
