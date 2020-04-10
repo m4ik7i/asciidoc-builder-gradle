@@ -18,6 +18,12 @@ subprojects { project ->
   asciidoctor {
     baseDir file('src/docs/asciidoc')
     sourceDir file('src/docs/asciidoc')
+    outputDir new File(rootProject.buildDir, project.name)
+    outputOptions {
+      backends = ['html5']
+      separateOutputDirs = true
+    }
+
     // sources {
     //   include '**/*.adoc'
     // }
@@ -26,20 +32,14 @@ subprojects { project ->
     //     include 'images/**'
     //   }
     // }
-    outputDir new File(rootProject.buildDir, project.name)
-    outputOptions {
-      backends = ['html5']
-    }
   }
 
   asciidoctorj {
-    // version = '1.6.2'
     version = '2.2.0'
 
     modules {
       diagram.use()
       diagram.version '1.5.16'
-      // groovyDsl.version '2.0.0' 
     }
 
     requires = [
@@ -52,7 +52,6 @@ subprojects { project ->
 
     attributes(
       encoding: 'utf-8',
-      revnumber: project.version,
       toc: 'left',
       toclevels: 6,
       numbered: true,

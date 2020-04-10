@@ -1,4 +1,4 @@
-description = 'sample'
+version = '0.1.0'
 
 asciidoctor {
   sources {
@@ -9,4 +9,10 @@ asciidoctor {
       include 'images/**'
     }
   }
+}
+
+asciidoctorj {
+  attributes(
+    revnumber: project.version,
+  )
 }
