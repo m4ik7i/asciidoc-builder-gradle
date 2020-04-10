@@ -75,7 +75,7 @@ subprojects { project ->
 
     fontsDir new File(rootProject.projectDir, 'fonts')
 
-    theme 'pdf-simple'
+    theme 'pdf'
 
     asciidoctorj {
       // requires 'asciidoctor-pdf-linewrap-ja'
