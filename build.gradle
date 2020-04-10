@@ -1,0 +1,80 @@
+plugins {
+  id 'org.asciidoctor.jvm.convert' version '3.1.0'
+}
+
+version = '0.1.0'
+
+subprojects { project ->
+  apply plugin: 'java'
+  apply plugin: 'org.asciidoctor.jvm.convert'
+
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+
+  dependencies {}
+
+  asciidoctor {
+    baseDir file('src/docs/asciidoc')
+    sourceDir file('src/docs/asciidoc')
+    // sources {
+    //   include '**/*.adoc'
+    // }
+    // resources {
+    //   from(sourceDir) {
+    //     include 'images/**'
+    //   }
+    // }
+    outputDir new File(rootProject.buildDir, project.name)
+    outputOptions {
+      backends = ['html5']
+    }
+  }
+
+  asciidoctorj {
+    // version = '1.6.2'
+    version = '2.2.0'
+
+    modules {
+      diagram.use()
+      diagram.version '1.5.16'
+      // groovyDsl.version '2.0.0' 
+    }
+
+    requires = [
+      'asciidoctor-diagram',
+    ]
+
+    options(
+      doctype: 'article', ruby: 'erubis',
+    )
+
+    attributes(
+      encoding: 'utf-8',
+      revnumber: project.version,
+      toc: 'left',
+      toclevels: 6,
+      numbered: true,
+      icons: 'font',
+      'source-highlighter': 'coderay',
+      setanchors: '',
+      idprefix: '',
+      idseparator: '-',
+      docinfo: 'shared',
+
+      // // 日本語設定
+      // lang: 'ja',
+      // 'toc-title': '目次',
+      // 'chapter-label': '',
+      // 'figure-caption': '図',
+      // 'example-caption': '例',
+      // 'table-caption': '表',
+      // 'appendix-caption': '付録',
+      // 'listing-caption': 'リスト',
+
+      // stylesdir: 'style',
+      // stylesheet: 'style.css',
+    )
+  }
+}

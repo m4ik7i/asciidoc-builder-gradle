@@ -1,0 +1,12 @@
+description = 'sample'
+
+asciidoctor {
+  sources {
+    include 'sample.adoc'
+  }
+  resources {
+    from(sourceDir) {
+      include 'images/**'
+    }
+  }
+}
